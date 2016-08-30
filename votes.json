@@ -2,35 +2,35 @@
  "name": "flare",
  "children": [
   {"name": "DataField", "size": 1759}
-  ]
-},
-{
- "name": "data",
- "children": [
-  {"name": "DataField", "size": 1759}
- ]
-},
-{
- "name": "display",
- "children": [
-  {"name": "DirtySprite", "size": 8833}
- ]
-},
-{
- "name": "flex",
- "children": [
-  {"name": "FlareVis", "size": 4116}
- ]
-},
-{
- "name": "physics",
- "children": [
-  {"name": "DragForce", "size": 1082}
- ]
-},
-{
- "name": "query",
- "children": [
-  {"name": "DragForce", "size": 1082}
+  {
+   "name": "data",
+   "children": [
+    {"name": "DataField", "size": 1759}
+   ]
+  },
+  {
+   "name": "display",
+   "children": [
+    {"name": "DirtySprite", "size": 8833}
+   ]
+  },
+  {
+   "name": "flex",
+   "children": [
+    {"name": "FlareVis", "size": 4116}
+   ]
+  },
+  {
+   "name": "physics",
+   "children": [
+    {"name": "DragForce", "size": 1082}
+   ]
+  },
+  {
+   "name": "query",
+   "children": [
+    {"name": "DragForce", "size": 1082}
+   ]
+  }
  ]
 }
