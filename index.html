@@ -83,13 +83,6 @@ var color = d3.scale.ordinal()
   .domain(["Item 1", "Item 2", "Item 3", "Item 4"])
   .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
-function randomData (){
-  var labels = color.domain();
-  return labels.map(function(label){
-    return { label: label, value: Math.random() }
-  });
-}
-
 var datastuff = [];
 var totalSize = 0;
 var percent = [];
@@ -119,15 +112,6 @@ firebaseRef.on('value', function(snapshot){
   refresh();
 });
 
-d3.select(".randomize")
-  .on("click", function(){
-    change(randomData());
-  });
-
-d3.select(".refresh")
-  .on("click", function(){
-    refresh();
-  });
 
 function change(data) {
 
