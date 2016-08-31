@@ -102,8 +102,7 @@ function refresh (){
     var I4 = snapshot.val()["Item 4"];
     totalSize = I1 + I2 + I3 + I4;
     percent = [(100 * I1 / totalSize).toPrecision(3) + "%", (100 * I2 / totalSize).toPrecision(3) + "%", (100 * I3 / totalSize).toPrecision(3) + "%", (100 * I4 / totalSize).toPrecision(3) + "%"];
-      
-    datastuff = [{ label: "Item 1", value: I1}, { label: "Item 2", value: I2}, { label: "Item 3", value: I3}, { label: "Item 4", value: I4}]
+    datastuff = [{ label: "Item 1: " + (100 * I1 / totalSize).toPrecision(3) + "%", value: I1}, { label: "Item 2", value: I2}, { label: "Item 3", value: I3}, { label: "Item 4", value: I4}]
     console.log(datastuff);
     debugger 
     change(datastuff);
