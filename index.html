@@ -98,11 +98,11 @@ function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
     datastuff = [{ label: "Item 1", value: snapshot.val()["Item 1"]}, { label: "Item 2", value: snapshot.val()["Item 2"]}, { label: "Item 3", value: snapshot.val()["Item 3"]}, { label: "Item 4", value: snapshot.val()["Item 4"]}]
     console.log(datastuff);
-    return datastuff;
+    change(datastuff);
   });
 }
 
-change(refresh());
+// change(refresh());
 
 d3.select(".randomize")
   .on("click", function(){
