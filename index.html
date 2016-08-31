@@ -96,10 +96,10 @@ var percent = [];
 
 function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
-    var I1 = snapshot.val()["Item 1"]};
-    var I2 = snapshot.val()["Item 2"]};   
-    var I3 = snapshot.val()["Item 3"]};   
-    var I4 = snapshot.val()["Item 4"]};
+    var I1 = snapshot.val()["Item 1"];
+    var I2 = snapshot.val()["Item 2"];   
+    var I3 = snapshot.val()["Item 3"];   
+    var I4 = snapshot.val()["Item 4"];
     totalSize = I1 + I2 + I3 + I4;
     percent = [(100 * I1 / totalSize).toPrecision(3), (100 * I2 / totalSize).toPrecision(3), (100 * I3 / totalSize).toPrecision(3), (100 * I4 / totalSize).toPrecision(3)];
     debugger   
