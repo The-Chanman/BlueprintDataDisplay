@@ -27,7 +27,8 @@ polyline{
 
 </style>
 <body>
-<button class="randomize">refresh</button>
+<button class="randomize">randomize</button>
+<button class="refresh">refresh</button>
 
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 <script>
@@ -102,6 +103,7 @@ function refresh (){
   });
 }
 
+refresh();
 // change(refresh());
 
 d3.select(".randomize")
@@ -109,6 +111,10 @@ d3.select(".randomize")
     change(randomData());
   });
 
+d3.select(".refresh")
+  .on("click", function(){
+    refresh();
+  });
 
 function change(data) {
 
