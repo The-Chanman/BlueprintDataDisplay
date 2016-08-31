@@ -96,10 +96,9 @@ var datastuff = [];
 var totalSize = 0;
 var percent = [];
 var mode = "volume";
-var pPrice = [1,1.5,2,2.5];
+var pPrice = [1,2,3,4];
 
 d3.selectAll("input").on("change", function change() {
-  debugger
     if(this.value === "price"){
         console.log("price"); 
         mode = "price";
