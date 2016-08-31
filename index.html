@@ -100,15 +100,13 @@ var pPrice = [1,1.5,2,2.5];
 
 d3.selectAll("input").on("change", function change() {
   debugger
-    var value = this.value === "price"
-      ? function() { 
+    if(this.value === "price"){
         console.log("price"); 
         mode = "price";
-      }
-      : function() { 
+    } else {
         console.log("volume"); 
         mode = "volume";
-      };
+    }
 });
 
 function refresh (){
