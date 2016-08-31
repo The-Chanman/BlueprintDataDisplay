@@ -100,8 +100,14 @@ var pPrice = [1,1.5,2,2.5];
 
 d3.selectAll("input").on("change", function change() {
     var value = this.value === "volume"
-      ? function() { console.log("volume"); }
-      : function() { console.log("price"); };
+      ? function() { 
+        console.log("volume"); 
+        mode = "volume";
+      }
+      : function() { 
+        console.log("price"); 
+        mode = "price";
+      };
 });
 
 function refresh (){
