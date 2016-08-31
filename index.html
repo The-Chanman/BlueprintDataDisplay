@@ -35,8 +35,8 @@ form {
 <body>
 
 <form>
-  <label><input type="radio" name="mode" value="size"> Count</label>
-  <label><input type="radio" name="mode" value="count" checked> Price</label>
+  <label><input type="radio" name="mode" value="volume" checked> Volume</label>
+  <label><input type="radio" name="mode" value="price"> Price</label>
 </form>
 
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
@@ -95,7 +95,14 @@ var color = d3.scale.ordinal()
 var datastuff = [];
 var totalSize = 0;
 var percent = [];
-var intialized = false;
+var mode = "volume";
+var pPrice = [1,1.5,2,2.5];
+
+d3.selectAll("input").on("change", function change() {
+    var value = this.value === "volume"
+      ? function() { console.log("volume"); }
+      : function() { console.log("price"); };
+});
 
 function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
@@ -104,9 +111,8 @@ function refresh (){
     var I3 = snapshot.val()["Item 3"];   
     var I4 = snapshot.val()["Item 4"];
     totalSize = I1 + I2 + I3 + I4;
-    percent = [(100 * I1 / totalSize).toPrecision(3) + "%", (100 * I2 / totalSize).toPrecision(3) + "%", (100 * I3 / totalSize).toPrecision(3) + "%", (100 * I4 / totalSize).toPrecision(3) + "%"];
     var keys = Object.keys(snapshot.val());
-    datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%", price: 1}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%", price: 1.5}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%", price: 2}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%", price: 2.5}]
+    datastuff = [{ label: keys[0], value: I1, vPercent: (100 * I1 / totalSize).toPrecision(3) + "%", price: pPrice[0]}, { label: keys[1], value: I2, vPercent: (100 * I2 / totalSize).toPrecision(3) + "%", price: pPrice[1]}, { label: keys[2], value: I3, vPercent: (100 * I3 / totalSize).toPrecision(3) + "%", price: pPrice[2]}, { label: keys[3], value: I4, vPercent: (100 * I4 / totalSize).toPrecision(3) + "%", price: pPrice[3]}]
     // console.log(datastuff); 
     change(datastuff);
   });
@@ -122,7 +128,6 @@ firebaseRef.on('value', function(snapshot){
 
 
 function change(data) {
-debugger
   /* ------- PIE SLICES -------*/
   var slice = svg.select(".slices").selectAll("path.slice")
     .data(pie(data), key);
@@ -156,7 +161,7 @@ debugger
     .text(function(d) {   
       console.log(d.data);
       intialized = true;
-      return d.data.label + ": " + d.data.percent;
+      return d.data.label + ": " + d.data.vPercent;
     });
   
   function midAngle(d){
