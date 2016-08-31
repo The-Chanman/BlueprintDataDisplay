@@ -35,8 +35,8 @@ form {
 <body>
 
 <form>
-  <label><input type="radio" name="mode" value="volume"> Volume</label>
-  <label><input type="radio" name="mode" value="price" checked> Price</label>
+  <label><input type="radio" name="mode" value="volume" checked> Volume</label>
+  <label><input type="radio" name="mode" value="price" > Price</label>
 </form>
 
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
@@ -103,9 +103,11 @@ d3.selectAll("input").on("change", function change() {
     if(this.value === "price"){
         console.log("price"); 
         mode = "price";
+        refresh(); 
     } else {
         console.log("volume"); 
         mode = "volume";
+        refresh();
     }
 });
 
@@ -115,9 +117,16 @@ function refresh (){
     var I2 = snapshot.val()["Item 2"];   
     var I3 = snapshot.val()["Item 3"];   
     var I4 = snapshot.val()["Item 4"];
-    totalSize = I1 + I2 + I3 + I4;
     var keys = Object.keys(snapshot.val());
-    datastuff = [{ label: keys[0], value: I1, vPercent: (100 * I1 / totalSize).toPrecision(3) + "%", price: pPrice[0]}, { label: keys[1], value: I2, vPercent: (100 * I2 / totalSize).toPrecision(3) + "%", price: pPrice[1]}, { label: keys[2], value: I3, vPercent: (100 * I3 / totalSize).toPrecision(3) + "%", price: pPrice[2]}, { label: keys[3], value: I4, vPercent: (100 * I4 / totalSize).toPrecision(3) + "%", price: pPrice[3]}]
+
+    if (mode === "volume"){
+      totalSize = I1 + I2 + I3 + I4;
+      datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%"}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%"}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%"}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%"}]
+    } else if (mode === "price"){
+      totalPrice = (I1 * pPrice[0]) + (I2 * pPrice[1]) + (I3 * pPrice[2]) + (I4 * pPrice[3]);
+      datastuff = [{ label: keys[0], value: I1 * pPrice[0], percent: (100 * (I1 * pPrice[0]) / totalPrice).toPrecision(3) + "%"}, { label: keys[1], value: I2 * pPrice[1], percent: (100 * (I2 * pPrice[1]) / totalPrice).toPrecision(3) + "%"}, { label: keys[2], value: I3 * pPrice[2], percent: (100 * (I3 * pPrice[2]) / totalPrice).toPrecision(3) + "%"}, { label: keys[3], value: I4 * pPrice[3], percent: (100 * (I4 * pPrice[3]) / totalPrice).toPrecision(3) + "%"}]
+    }
+
     // console.log(datastuff); 
     change(datastuff);
   });
@@ -166,7 +175,7 @@ function change(data) {
     .text(function(d) {   
       console.log(d.data);
       intialized = true;
-      return d.data.label + ": " + d.data.vPercent;
+      return d.data.label + ": " + d.data.percent;
     });
   
   function midAngle(d){
