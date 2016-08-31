@@ -111,7 +111,7 @@ firebaseRef.on('value', function(snapshot){
 
 
 function change(data) {
-
+debugger
   /* ------- PIE SLICES -------*/
   var slice = svg.select(".slices").selectAll("path.slice")
     .data(pie(data), key);
