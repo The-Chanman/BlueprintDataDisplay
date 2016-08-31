@@ -42,7 +42,7 @@ polyline{
 </script>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-console.log(firebase.database().ref('Demand'));
+firebase.database().ref('Demand').once('value').then(function(snapshot) {debugger};
 
 var svg = d3.select("body")
   .append("svg")
