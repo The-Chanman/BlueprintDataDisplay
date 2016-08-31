@@ -114,6 +114,11 @@ function refresh (){
 refresh();
 // change(refresh());
 
+var firebaseRef = firebase.database().ref('Demand');
+firebaseRef.on('value', function(snapshot){
+  refresh();
+});
+
 d3.select(".randomize")
   .on("click", function(){
     change(randomData());
