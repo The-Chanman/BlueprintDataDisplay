@@ -35,8 +35,8 @@ form {
 <body>
 
 <form>
-  <label><input type="radio" name="mode" value="volume" checked> Volume</label>
-  <label><input type="radio" name="mode" value="price"> Price</label>
+  <label><input type="radio" name="mode" value="volume"> Volume</label>
+  <label><input type="radio" name="mode" value="price" checked> Price</label>
 </form>
 
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
@@ -99,14 +99,15 @@ var mode = "volume";
 var pPrice = [1,1.5,2,2.5];
 
 d3.selectAll("input").on("change", function change() {
-    var value = this.value === "volume"
+  debugger
+    var value = this.value === "price"
       ? function() { 
-        console.log("volume"); 
-        mode = "volume";
-      }
-      : function() { 
         console.log("price"); 
         mode = "price";
+      }
+      : function() { 
+        console.log("volume"); 
+        mode = "volume";
       };
 });
 
