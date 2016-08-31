@@ -25,9 +25,19 @@ polyline{
   fill: none;
 }
 
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 </style>
 <body>
 
+<form>
+  <label><input type="radio" name="mode" value="size"> Count</label>
+  <label><input type="radio" name="mode" value="count" checked> Price</label>
+</form>
 
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 <script>
@@ -96,7 +106,7 @@ function refresh (){
     totalSize = I1 + I2 + I3 + I4;
     percent = [(100 * I1 / totalSize).toPrecision(3) + "%", (100 * I2 / totalSize).toPrecision(3) + "%", (100 * I3 / totalSize).toPrecision(3) + "%", (100 * I4 / totalSize).toPrecision(3) + "%"];
     var keys = Object.keys(snapshot.val());
-    datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%"}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%"}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%"}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%"}]
+    datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%", price: 1}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%", price: 1.5}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%", price: 2}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%", price: 2.5}]
     // console.log(datastuff); 
     change(datastuff);
   });
