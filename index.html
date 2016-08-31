@@ -101,10 +101,11 @@ function refresh (){
     var I3 = snapshot.val()["Item 3"];   
     var I4 = snapshot.val()["Item 4"];
     totalSize = I1 + I2 + I3 + I4;
-    percent = [(100 * I1 / totalSize).toPrecision(3), (100 * I2 / totalSize).toPrecision(3), (100 * I3 / totalSize).toPrecision(3), (100 * I4 / totalSize).toPrecision(3)];
-    debugger   
-    datastuff = [{ label: "Item 1", value: snapshot.val()["Item 1"]}, { label: "Item 2", value: snapshot.val()["Item 2"]}, { label: "Item 3", value: snapshot.val()["Item 3"]}, { label: "Item 4", value: snapshot.val()["Item 4"]}]
+    percent = [(100 * I1 / totalSize).toPrecision(3) + "%", (100 * I2 / totalSize).toPrecision(3) + "%", (100 * I3 / totalSize).toPrecision(3) + "%", (100 * I4 / totalSize).toPrecision(3) + "%"];
+      
+    datastuff = [{ label: "Item 1", value: I1}, { label: "Item 2", value: I2}, { label: "Item 3", value: I3}, { label: "Item 4", value: I4}]
     console.log(datastuff);
+    debugger 
     change(datastuff);
   });
 }
