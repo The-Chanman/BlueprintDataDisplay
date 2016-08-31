@@ -148,12 +148,11 @@ function change(data) {
 
   var text = svg.select(".labels").selectAll("text")
     .data(pie(data), key);
-  debugger
   text.enter()
     .append("text")
     .attr("dy", ".35em")
     .text(function(d) {   
-      return d.data.label + ": "+ d.data.percent;
+      return d.data.label + ":  "+ d.data.percent;
     });
   
   function midAngle(d){
