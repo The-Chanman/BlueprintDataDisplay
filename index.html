@@ -84,7 +84,7 @@ svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 var key = function(d){ return d.data.label; };
 
 var color = d3.scale.ordinal()
-  .domain(["Item 1", "Item 2", "Item 3", "Item 4", "other"])
+  .domain(["Item 1", "Item 2", "Item 3", "Item 4"])
   .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 function randomData (){
@@ -95,10 +95,14 @@ function randomData (){
 }
 
 function refresh (){
-
+  firebase.database().ref('Demand').once('value').then(function(snapshot) {
+    datastuff = [{ label: "Item 1", value: snapshot.val()["Item 1"]}, { label: "Item 2", value: snapshot.val()["Item 2"]}, { label: "Item 3", value: snapshot.val()["Item 3"]}, { label: "Item 4", value: snapshot.val()["Item 4"]}]
+    console.log(datastuff);
+    return datastuff;
+  });
 }
 
-change(randomData());
+change(refresh());
 
 d3.select(".randomize")
   .on("click", function(){
