@@ -33,7 +33,9 @@ form {
 
 </style>
 <body>
-
+Data Display
+<div id="graph">
+</div>
 <form>
   <label><input type="radio" name="mode" value="volume" checked> Volume</label>
   <label><input type="radio" name="mode" value="price" > Price</label>
@@ -55,7 +57,7 @@ form {
 
 
 
-var svg = d3.select("body")
+var svg = d3.select("graph")
   .append("svg")
   .append("g")
 
