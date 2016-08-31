@@ -29,8 +29,20 @@ polyline{
 <body>
 <button class="randomize">refresh</button>
 
+<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAxu2aKit7uOEXplMlqaGFyml0p9-nOjCg",
+    authDomain: "blueprintstorefront.firebaseapp.com",
+    databaseURL: "https://blueprintstorefront.firebaseio.com",
+    storageBucket: "blueprintstorefront.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
+console.log(firebase.database().ref('Demand'));
 
 var svg = d3.select("body")
   .append("svg")
@@ -74,6 +86,10 @@ function randomData (){
   return labels.map(function(label){
     return { label: label, value: Math.random() }
   });
+}
+
+function refresh (){
+
 }
 
 change(randomData());
