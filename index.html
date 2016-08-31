@@ -44,12 +44,7 @@ polyline{
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
-var datastuff = [];
 
-firebase.database().ref('Demand').once('value').then(function(snapshot) {
-  datastuff = [{ label: "Item 1", value: snapshot.val()["Item 1"]}, { label: "Item 2", value: snapshot.val()["Item 2"]}, { label: "Item 3", value: snapshot.val()["Item 3"]}, { label: "Item 4", value: snapshot.val()["Item 4"]}]
-  console.log(datastuff);
-});
 
 var svg = d3.select("body")
   .append("svg")
@@ -95,8 +90,19 @@ function randomData (){
   });
 }
 
+var datastuff = [];
+var totalSize = 0;
+var percent = [];
+
 function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
+    var I1 = snapshot.val()["Item 1"]};
+    var I2 = snapshot.val()["Item 2"]};   
+    var I3 = snapshot.val()["Item 3"]};   
+    var I4 = snapshot.val()["Item 4"]};
+    totalSize = I1 + I2 + I3 + I4;
+    percent = [(100 * I1 / totalSize).toPrecision(3), (100 * I2 / totalSize).toPrecision(3), (100 * I3 / totalSize).toPrecision(3), (100 * I4 / totalSize).toPrecision(3)];
+    debugger   
     datastuff = [{ label: "Item 1", value: snapshot.val()["Item 1"]}, { label: "Item 2", value: snapshot.val()["Item 2"]}, { label: "Item 3", value: snapshot.val()["Item 3"]}, { label: "Item 4", value: snapshot.val()["Item 4"]}]
     console.log(datastuff);
     change(datastuff);
