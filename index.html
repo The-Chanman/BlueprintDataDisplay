@@ -117,15 +117,16 @@ d3.selectAll("input").on("change", function change() {
 
 function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
+    var keys = Object.keys(snapshot.val());
     var I1 = snapshot.val()["Item 1"];
     var I2 = snapshot.val()["Item 2"];   
     var I3 = snapshot.val()["Item 3"];   
     var I4 = snapshot.val()["Item 4"];
-    var keys = Object.keys(snapshot.val());
+    var I5 = snapshot.val()["Other"];
 
     if (mode === "volume"){
-      totalSize = I1 + I2 + I3 + I4;
-      datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%"}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%"}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%"}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%"}]
+      totalSize = I1 + I2 + I3 + I4 + I5;
+      datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%"}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%"}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%"}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%"}, { label: keys[4], value: I5, percent: (100 * I5 / totalSize).toPrecision(3) + "%"}]
     } else if (mode === "price"){
       totalPrice = (I1 * pPrice[0]) + (I2 * pPrice[1]) + (I3 * pPrice[2]) + (I4 * pPrice[3]);
       datastuff = [{ label: keys[0], value: I1 * pPrice[0], percent: (100 * (I1 * pPrice[0]) / totalPrice).toPrecision(3) + "%"}, { label: keys[1], value: I2 * pPrice[1], percent: (100 * (I2 * pPrice[1]) / totalPrice).toPrecision(3) + "%"}, { label: keys[2], value: I3 * pPrice[2], percent: (100 * (I3 * pPrice[2]) / totalPrice).toPrecision(3) + "%"}, { label: keys[3], value: I4 * pPrice[3], percent: (100 * (I4 * pPrice[3]) / totalPrice).toPrecision(3) + "%"}]
