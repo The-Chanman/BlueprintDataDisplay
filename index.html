@@ -4,8 +4,6 @@
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /*width: 960px;
-  height: 500px;*/
   position: relative;
 }
 
@@ -85,7 +83,7 @@ var pie = d3.layout.pie()
 
 var arc = d3.svg.arc()
   .outerRadius(radius * 0.8)
-  .innerRadius(radius * 0.3);
+  .innerRadius(radius * 0.5);
 
 var outerArc = d3.svg.arc()
   .innerRadius(radius * 0.9)
