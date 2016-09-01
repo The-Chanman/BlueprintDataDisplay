@@ -102,6 +102,8 @@ var totalSize = 0;
 var percent = [];
 var mode = "volume";
 var pPrice = [1,2,3,4];
+var sPrice = [1,2,3,4];
+var effeciency = 0;
 
 d3.selectAll("input").on("change", function change() {
     if(this.value === "price"){
@@ -123,13 +125,16 @@ function refresh (){
     var I3 = snapshot.val()["Item 3"];   
     var I4 = snapshot.val()["Item 4"];
     var I5 = snapshot.val()["Other"];
+    totalSize = I1 + I2 + I3 + I4 + I5;
+    effeciency = (100 * (I1 + I2 + I3 + I4) / totalSize).toPrecision(3);
+
 
     if (mode === "volume"){
-      totalSize = I1 + I2 + I3 + I4 + I5;
       datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%"}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%"}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%"}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%"}, { label: keys[4], value: I5, percent: (100 * I5 / totalSize).toPrecision(3) + "%"}]
     } else if (mode === "price"){
-      totalPrice = (I1 * pPrice[0]) + (I2 * pPrice[1]) + (I3 * pPrice[2]) + (I4 * pPrice[3]);
-      datastuff = [{ label: keys[0], value: I1 * pPrice[0], percent: (100 * (I1 * pPrice[0]) / totalPrice).toPrecision(3) + "%"}, { label: keys[1], value: I2 * pPrice[1], percent: (100 * (I2 * pPrice[1]) / totalPrice).toPrecision(3) + "%"}, { label: keys[2], value: I3 * pPrice[2], percent: (100 * (I3 * pPrice[2]) / totalPrice).toPrecision(3) + "%"}, { label: keys[3], value: I4 * pPrice[3], percent: (100 * (I4 * pPrice[3]) / totalPrice).toPrecision(3) + "%"}]
+      var totalSale = (I1 * sPrice[0]) + (I2 * sPrice[1]) + (I3 * sPrice[2]) + (I4 * sPrice[3]);
+      var totalPrice = totalSale - ((I1 * pPrice[0]) + (I2 * pPrice[1]) + (I3 * pPrice[2]) + (I4 * pPrice[3]))
+      datastuff = [{ label: keys[0], value: I1 * sPrice[0], percent: (100 * (I1 * sPrice[0]) / totalSale).toPrecision(3) + "%"}, { label: keys[1], value: I2 * sPrice[1], percent: (100 * (I2 * sPrice[1]) / totalSale).toPrecision(3) + "%"}, { label: keys[2], value: I3 * sPrice[2], percent: (100 * (I3 * sPrice[2]) / totalSale).toPrecision(3) + "%"}, { label: keys[3], value: I4 * sPrice[3], percent: (100 * (I4 * sPrice[3]) / totalSale).toPrecision(3) + "%"}]
     }
 
     // console.log(datastuff); 
