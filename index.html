@@ -71,6 +71,14 @@ padding-right:190px;
   width: 100%;
 }
 
+/* Self Clearing Goodness */
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
 </style>
 <body>
 <div class="banner banner0"><h1>Vendor Analytics</h1></div>
@@ -82,35 +90,36 @@ padding-right:190px;
 </form>
 <br><br>
 <div class="redline"></div>
-<div class="metrics">
-  <div class="metriclabel">
-  Net Profit
-  </div>  
-  <div class="metricdata">
+<div class="container">
+  <div class="metrics row">
+    <div class="metriclabel">
+    Net Profit
+    </div>  
+    <div class="metricdata">
 
+    </div>
+    <div class="metriclabel">
+    Efficiency
+    </div>  
+    <div class="metricdata">
+
+    </div>
   </div>
-  <div class="metriclabel">
-  Efficiency
-  </div>  
-  <div class="metricdata">
+  <div class="metrics row">
+    <div class="metriclabel">
+    Customers
+    </div>  
+    <div class="metricdata">
+    
+    </div>
+    <div class="metriclabel">
+    Satisfaction
+    </div>  
+    <div class="metricdata">
 
+    </div>
   </div>
 </div>
-<div class="metrics">
-  <div class="metriclabel">
-  Customers
-  </div>  
-  <div class="metricdata">
-  
-  </div>
-  <div class="metriclabel">
-  Satisfaction
-  </div>  
-  <div class="metricdata">
-
-  </div>
-</div>
-
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 <script>
   // Initialize Firebase
