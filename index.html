@@ -5,6 +5,8 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
+  padding: inherit;
+  margin: 0;
 }
 
 #graph {
@@ -43,6 +45,8 @@ line-height:100px;
 text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 width:100%;
 text-align: center;
+font-family: "Roboto", sans-serif;
+font-weight: 700;
 }
 .slogan{
 float: right;
@@ -63,7 +67,6 @@ padding-right:190px;
 }
 
 .banner0{
-  background: #f9f9f9 url(logo.png) no-repeat center left;
   color: #cccccc;
 }
 .redline{
@@ -102,6 +105,8 @@ padding-right:190px;
 }
 
 </style>
+<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
+
 <body>
 <div class="banner banner0"><h1>Vendor Analytics</h1></div>
 <div id="graph">
@@ -116,13 +121,13 @@ padding-right:190px;
   <div class="metrics">
     <div class="metriclabel">
     NET PROFIT
-    </div>  
+    </div>
     <div class="metricdata">
     $0.00
     </div>
     <div class="metriclabel">
     EFFICIENCY
-    </div>  
+    </div>
     <div class="metricdata">
     0.00%
     </div>
@@ -130,13 +135,13 @@ padding-right:190px;
   <div class="metrics">
     <div class="metriclabel">
     CUSTOMERS
-    </div>  
+    </div>
     <div class="metricdata">
     0.00
     </div>
     <div class="metriclabel">
     SATISFACTION
-    </div>  
+    </div>
     <div class="metricdata">
     0.00%
     </div>
@@ -205,11 +210,11 @@ var effeciency = 0;
 
 d3.selectAll("input").on("change", function change() {
     if(this.value === "price"){
-        console.log("price"); 
+        console.log("price");
         mode = "price";
-        refresh(); 
+        refresh();
     } else {
-        console.log("volume"); 
+        console.log("volume");
         mode = "volume";
         refresh();
     }
@@ -219,8 +224,8 @@ function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
     var keys = Object.keys(snapshot.val());
     var I1 = snapshot.val()["Item 1"];
-    var I2 = snapshot.val()["Item 2"];   
-    var I3 = snapshot.val()["Item 3"];   
+    var I2 = snapshot.val()["Item 2"];
+    var I3 = snapshot.val()["Item 3"];
     var I4 = snapshot.val()["Item 4"];
     var I5 = snapshot.val()["Other"];
     totalSize = I1 + I2 + I3 + I4 + I5;
@@ -234,7 +239,7 @@ function refresh (){
       datastuff = [{ label: keys[0], value: I1 * sPrice[0], percent: (100 * (I1 * sPrice[0]) / totalSale).toPrecision(3) + "%"}, { label: keys[1], value: I2 * sPrice[1], percent: (100 * (I2 * sPrice[1]) / totalSale).toPrecision(3) + "%"}, { label: keys[2], value: I3 * sPrice[2], percent: (100 * (I3 * sPrice[2]) / totalSale).toPrecision(3) + "%"}, { label: keys[3], value: I4 * sPrice[3], percent: (100 * (I4 * sPrice[3]) / totalSale).toPrecision(3) + "%"}]
     }
 
-    // console.log(datastuff); 
+    // console.log(datastuff);
     change(datastuff);
   });
 }
@@ -258,7 +263,7 @@ function change(data) {
     .style("fill", function(d) { return color(d.data.label); })
     .attr("class", "slice");
 
-  slice   
+  slice
     .transition().duration(1000)
     .attrTween("d", function(d) {
       this._current = this._current || d;
@@ -279,12 +284,12 @@ function change(data) {
   text.enter()
     .append("text")
     .attr("dy", ".35em")
-    .text(function(d) {   
+    .text(function(d) {
       console.log(d.data);
       intialized = true;
       return d.data.label + ": " + d.data.percent;
     });
-  
+
   function midAngle(d){
     return d.startAngle + (d.endAngle - d.startAngle)/2;
   }
@@ -319,7 +324,7 @@ function change(data) {
 
   var polyline = svg.select(".lines").selectAll("polyline")
     .data(pie(data), key);
-  
+
   polyline.enter()
     .append("polyline");
 
@@ -333,9 +338,9 @@ function change(data) {
         var pos = outerArc.centroid(d2);
         pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
         return [arc.centroid(d2), outerArc.centroid(d2), pos];
-      };      
+      };
     });
-  
+
   polyline.exit()
     .remove();
 };
