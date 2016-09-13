@@ -270,7 +270,7 @@ function refresh (){
     document.getElementById("profit").innerHTML = "$" +totalProfit;
     document.getElementById("customers").innerHTML = totalSize;
     document.getElementById("effeciency").innerHTML = effeciency + "%";
-    document.getElementById("satisfaction").innerHTML = ((I1+I2+I3+I4)/totalSize) + "%";
+    document.getElementById("satisfaction").innerHTML = ((I1+I2+I3+I4)/totalSize).toPrecision(3) + "%";
 
     // console.log(datastuff);
     change(datastuff);
