@@ -92,6 +92,7 @@ ul{
 
 li {
   float: left;
+  list-style-type:none
 }
 /* Self Clearing Goodness */
 .container:after,
@@ -222,7 +223,7 @@ svg.attr("transform", "translate(" + width / 2.5 + "," + height / 2 + ")");
 var key = function(d){ return d.data.label; };
 
 var color = d3.scale.ordinal()
-  .domain(["Item 1", "Item 2", "Item 3", "Item 4"])
+  .domain(["HONEST T", "HERSHEY'S", "PRETZEL THINS", "COCA COLA". "OTHER"])
   .range(["#42A1B5", "#745DB9", "#BBEA4C", "#F1404C", "#EF8F41", "#d0743c", "#ff8c00"]);
 
 var datastuff = [];
