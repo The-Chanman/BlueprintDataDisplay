@@ -260,14 +260,14 @@ function refresh (){
 
 
     if (mode === "volume"){
+      var totalSale = (I1 * sPrice[0]) + (I2 * sPrice[1]) + (I3 * sPrice[2]) + (I4 * sPrice[3]);
+      totalProfit = totalSale - ((I1 * pPrice[0]) + (I2 * pPrice[1]) + (I3 * pPrice[2]) + (I4 * pPrice[3]));
       datastuff = [{ label: keys[0], value: I1, percent: (100 * I1 / totalSize).toPrecision(3) + "%"}, { label: keys[1], value: I2, percent: (100 * I2 / totalSize).toPrecision(3) + "%"}, { label: keys[2], value: I3, percent: (100 * I3 / totalSize).toPrecision(3) + "%"}, { label: keys[3], value: I4, percent: (100 * I4 / totalSize).toPrecision(3) + "%"}, { label: keys[4], value: I5, percent: (100 * I5 / totalSize).toPrecision(3) + "%"}]
     } else if (mode === "price"){
-      var totalSale = (I1 * sPrice[0]) + (I2 * sPrice[1]) + (I3 * sPrice[2]) + (I4 * sPrice[3]);
-      totalProfit = totalSale - ((I1 * pPrice[0]) + (I2 * pPrice[1]) + (I3 * pPrice[2]) + (I4 * pPrice[3]))
       datastuff = [{ label: keys[0], value: I1 * sPrice[0], percent: (100 * (I1 * sPrice[0]) / totalSale).toPrecision(3) + "%"}, { label: keys[1], value: I2 * sPrice[1], percent: (100 * (I2 * sPrice[1]) / totalSale).toPrecision(3) + "%"}, { label: keys[2], value: I3 * sPrice[2], percent: (100 * (I3 * sPrice[2]) / totalSale).toPrecision(3) + "%"}, { label: keys[3], value: I4 * sPrice[3], percent: (100 * (I4 * sPrice[3]) / totalSale).toPrecision(3) + "%"}]
     }
 
-    document.getElementById("profit").innerHTML = "$" +totalProfit;
+    document.getElementById("profit").innerHTML = "$" + totalProfit;
     document.getElementById("customers").innerHTML = totalSize;
     document.getElementById("effeciency").innerHTML = effeciency + "%";
     document.getElementById("satisfaction").innerHTML = (((I1+I2+I3+I4)/totalSize)*100).toPrecision(3) + "%";
