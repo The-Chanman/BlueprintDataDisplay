@@ -83,6 +83,16 @@ margin-top: 30px;
   width:50%;
 }
 
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
 /* Self Clearing Goodness */
 .container:after,
 .row:after,
@@ -127,38 +137,40 @@ margin-top: 30px;
 
 <div class="container" style="position: fixed;bottom: 0;width: 100%;height:300px;">
   <div class="redline"></div>
-  <div class="box">
-    <div class="metrics">
-      <div class="metriclabel">
-      NET PROFIT
+  </ul>
+    <li class="box">
+      <div class="metrics">
+        <div class="metriclabel">
+        NET PROFIT
+        </div>
+        <div class="metricdata" id="profit">
+        $0.00
+        </div>
+        <div class="metriclabel">
+        CUSTOMERS
+        </div>
+        <div class="metricdata" id="customers">
+        0.00
+        </div>
       </div>
-      <div class="metricdata" id="profit">
-      $0.00
+    </li>
+    <li class="box">
+      <div class="metrics">
+        <div class="metriclabel">
+        EFFICIENCY
+        </div>
+        <div class="metricdata" id="effeciency">
+        0.00%
+        </div>
+        <div class="metriclabel">
+        SATISFACTION
+        </div>
+        <div class="metricdata" id="satisfaction">
+        0.00%
+        </div>
       </div>
-      <div class="metriclabel">
-      CUSTOMERS
-      </div>
-      <div class="metricdata" id="customers">
-      0.00
-      </div>
-    </div>
-  </div>
-  <div class="box">
-    <div class="metrics">
-      <div class="metriclabel">
-      EFFICIENCY
-      </div>
-      <div class="metricdata" id="effeciency">
-      0.00%
-      </div>
-      <div class="metriclabel">
-      SATISFACTION
-      </div>
-      <div class="metricdata" id="satisfaction">
-      0.00%
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 <script>
