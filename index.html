@@ -223,7 +223,7 @@ svg.attr("transform", "translate(" + width / 2.5 + "," + height / 2 + ")");
 var key = function(d){ return d.data.label; };
 
 var color = d3.scale.ordinal()
-  .domain(["Item 1", "Item 2", "Item 3", "Item 4"])
+  .domain(["HONEST T", "HERSHEYS", "PRETZEL THINS", "COCA COLA"])
   .range(["#42A1B5", "#745DB9", "#BBEA4C", "#F1404C", "#EF8F41", "#d0743c", "#ff8c00"]);
 
 var datastuff = [];
@@ -249,10 +249,10 @@ d3.selectAll("input").on("change", function change() {
 function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
     var keys = Object.keys(snapshot.val());
-    var I1 = snapshot.val()["Item 1"];
-    var I2 = snapshot.val()["Item 2"];
-    var I3 = snapshot.val()["Item 3"];
-    var I4 = snapshot.val()["Item 4"];
+    var I1 = snapshot.val()["HONEST T"];
+    var I2 = snapshot.val()["HERSHEYS"];
+    var I3 = snapshot.val()["PRETZEL THINS"];
+    var I4 = snapshot.val()["COCA COLA"];
     var I5 = snapshot.val()["Other"];
     totalSize = I1 + I2 + I3 + I4 + I5;
     effeciency = (100 * (I1 + I2 + I3 + I4) / totalSize).toPrecision(3);
