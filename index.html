@@ -267,10 +267,10 @@ function refresh (){
       datastuff = [{ label: keys[0], value: I1 * sPrice[0], percent: (100 * (I1 * sPrice[0]) / totalSale).toPrecision(3) + "%"}, { label: keys[1], value: I2 * sPrice[1], percent: (100 * (I2 * sPrice[1]) / totalSale).toPrecision(3) + "%"}, { label: keys[2], value: I3 * sPrice[2], percent: (100 * (I3 * sPrice[2]) / totalSale).toPrecision(3) + "%"}, { label: keys[3], value: I4 * sPrice[3], percent: (100 * (I4 * sPrice[3]) / totalSale).toPrecision(3) + "%"}]
     }
 
-    document.getElementById("profit").value = totalProfit;
-    document.getElementById("customers").value = totalSize;
-    document.getElementById("effeciency").value = effeciency;
-    document.getElementById("satisfaction").value = (I5/totalSize);
+    document.getElementById("profit").innerHTML = "$" +totalProfit;
+    document.getElementById("customers").innerHTML = totalSize;
+    document.getElementById("effeciency").innerHTML = effeciency + "%";
+    document.getElementById("satisfaction").innerHTML = ((I1+I2+I3+I4)/totalSize) "%";
 
     // console.log(datastuff);
     change(datastuff);
