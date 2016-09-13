@@ -249,11 +249,11 @@ d3.selectAll("input").on("change", function change() {
 function refresh (){
   firebase.database().ref('Demand').once('value').then(function(snapshot) {
     var keys = Object.keys(snapshot.val());
-    var I1 = snapshot.val()["HONEST T"];
-    var I2 = snapshot.val()["HERSHEY'S"];
-    var I3 = snapshot.val()["PRETZEL THINS"];
-    var I4 = snapshot.val()["COCA COLA"];
-    var I5 = snapshot.val()["OTHER"];
+    var I1 = snapshot.val()["Item 1"];
+    var I2 = snapshot.val()["Item 2"];
+    var I3 = snapshot.val()["Item 3"];
+    var I4 = snapshot.val()["Item 4"];
+    var I5 = snapshot.val()["Other"];
     totalSize = I1 + I2 + I3 + I4 + I5;
     effeciency = (100 * (I1 + I2 + I3 + I4) / totalSize).toPrecision(3);
 
